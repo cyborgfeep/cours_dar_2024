@@ -1,4 +1,5 @@
 import 'package:cours_dar_2024/models/transaction.dart';
+import 'package:cours_dar_2024/screens/scan_screen.dart';
 import 'package:cours_dar_2024/utils/constants.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -203,45 +204,52 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget cardWidget() {
-    return Container(
-      height: 180,
-      margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
-      decoration: BoxDecoration(
-          color: Colors.blue,
-          borderRadius: BorderRadius.circular(25),
-          image: DecorationImage(
-              image: const AssetImage(imgBg),
-              fit: BoxFit.cover,
-              colorFilter: ColorFilter.mode(
-                  Colors.white.withOpacity(0.2), BlendMode.srcIn))),
-      child: Center(
-        child: Container(
-          decoration: BoxDecoration(
-              color: Colors.white, borderRadius: BorderRadius.circular(25)),
-          height: 140,
-          width: 135,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Column(
-              children: [
-                Expanded(
-                    child: PrettyQrView.data(
-                  data: 'google.com',
-                )),
-                const SizedBox(
-                  height: 5,
-                ),
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.camera_alt),
-                    SizedBox(
-                      width: 5,
-                    ),
-                    Text("Scanner")
-                  ],
-                )
-              ],
+    return GestureDetector(
+      onTap: (){
+        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+          return ScanScreen();
+        },));
+      },
+      child: Container(
+        height: 180,
+        margin: const EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+        decoration: BoxDecoration(
+            color: Colors.blue,
+            borderRadius: BorderRadius.circular(25),
+            image: DecorationImage(
+                image: const AssetImage(imgBg),
+                fit: BoxFit.cover,
+                colorFilter: ColorFilter.mode(
+                    Colors.white.withOpacity(0.2), BlendMode.srcIn))),
+        child: Center(
+          child: Container(
+            decoration: BoxDecoration(
+                color: Colors.white, borderRadius: BorderRadius.circular(25)),
+            height: 140,
+            width: 135,
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Column(
+                children: [
+                  Expanded(
+                      child: PrettyQrView.data(
+                    data: 'google.com',
+                  )),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  const Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(Icons.camera_alt),
+                      SizedBox(
+                        width: 5,
+                      ),
+                      Text("Scanner")
+                    ],
+                  )
+                ],
+              ),
             ),
           ),
         ),
